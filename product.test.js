@@ -1,4 +1,4 @@
-const { resetProducts, addProduct, removeProduct, getProducts, getProductById, pdateProduct } = require('./product')
+const { resetProducts, addProduct, removeProduct, getProducts, getProductById, updateProduct } = require('./product')
 
 beforeEach(() => {
     resetProducts()
@@ -54,5 +54,15 @@ describe("getProductById", () => {
 
     it("should throw an error if the product does not exist", () => {
         expect(() => getProductById(999)).toThrow("Product not found")
+    })
+})
+
+describe("updateProduct", () => {
+    it("should update a product by id", () => {
+        const product = addProduct("Manzana", 2)
+        const updatedProduct = updateProduct(product.id, "Manzana Verde", 3)
+
+        expect(updatedProduct.name).toBe("Manzana Verde")
+        expect(updatedProduct.price).toBe(3)
     })
 })

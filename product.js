@@ -45,4 +45,23 @@ function getProductById(id) {
     return product
 }
 
-module.exports = { resetProducts, addProduct, getProducts, removeProduct, getProductById }
+function updateProduct(id, newName, newPrice) {
+
+    const product = products.find(product => product.id === id)
+
+    if (!product) {
+        throw new Error("Product not found")
+    }
+
+    if (newName !== undefined) {
+        product.name = newName;
+    }
+
+    if (newPrice !== undefined) {
+        product.price = newPrice
+    }
+
+    return product
+}
+
+module.exports = { resetProducts, addProduct, getProducts, removeProduct, getProductById, updateProduct }
